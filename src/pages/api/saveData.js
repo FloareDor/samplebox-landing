@@ -28,7 +28,7 @@ export default async function handler(req, res) {
       res.status(201).json({ message: 'Email saved successfully!' });
     } catch (error) {
       console.error('Error saving email:', error);
-      res.status(500).json({ message: 'Something went wrong!' });
+      res.status(500).json({ message: 'Something went wrong!' + error });
     }
   } else {
     res.setHeader('Allow', ['POST']);
