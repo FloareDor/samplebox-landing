@@ -57,7 +57,7 @@ const Home = () => {
               </Button>
             ) : (
               <div className="bg-zinc-950 text-zinc-400 px-8 py-3 rounded-3xl text-sm font-semibold">
-                Thanks! We'll keep you posted.
+                Thanks! We&apos;ll keep you posted.
               </div>
             )}
           </form>
