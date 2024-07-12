@@ -1,30 +1,33 @@
 import { saveEmail } from '../../lib/db';
-// import geoip from 'geoip-lite';
+import { RateLimiterMemory } from 'rate-limiter-flexible';
+
+// Set up the rate limiter
+const rateLimiter = new RateLimiterMemory({
+  points: 9, // Number of points
+  duration: 60, // Per 60 seconds
+});
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
+      // Getting that IP address
+      const forwardedFor = req.headers['x-forwarded-for'];
+      const ip = forwardedFor ? forwardedFor.split(',')[0] : req.socket.remoteAddress;
+
+      // Check rate limit
+      try {
+        await rateLimiter.consume(ip);
+      } catch (rateLimitError) {
+        return res.status(429).json({ message: 'Too many requests, please try again later.' });
+      }
+
       const { email } = req.body;
       
       if (!email || typeof email !== 'string') {
         return res.status(400).json({ message: 'Invalid email provided' });
       }
 
-      // Getting that IP address
-      const forwardedFor = req.headers['x-forwarded-for'];
-      const ip = forwardedFor ? forwardedFor.split(',')[0] : req.socket.remoteAddress;
-
-      // Using geoip-lite to get location info
-	//   const geo = geoip.lookup(ip);
-    //   const location = geo ? {
-    //     country: geo.country,
-    //     continent: geo.continent,
-    //     region: geo.region,
-    //     city: geo.city,
-    //     timezone: geo.timezone
-	// 	  } : null;
-		const location = null;
-	  
+      const location = null;
 
       await saveEmail(email, location);
       res.status(201).json({ message: 'Email saved successfully!' });
