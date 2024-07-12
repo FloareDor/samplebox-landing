@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import plugin from 'tailwindcss/plugin'
 
 const config = {
   darkMode: ["class"],
@@ -96,7 +97,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    function ({ addUtilities }) {
+    plugin(function({ addUtilities }: { addUtilities: (utilities: Record<string, Record<string, string>>) => void }) {
       const newUtilities = {
         ".animation-delay-2000": {
           "animation-delay": "2s",
@@ -106,7 +107,7 @@ const config = {
         },
       }
       addUtilities(newUtilities)
-    },
+    }),
   ],
 } satisfies Config
 
