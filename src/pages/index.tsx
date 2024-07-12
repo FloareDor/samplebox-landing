@@ -5,6 +5,7 @@ import YouTubeEmbed from "@/components/YoutubeEmbed";
 const Home = () => {
   const [inputState, setInputState] = useState("initial");
   const [email, setEmail] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   const handleButtonClick = () => {
     setInputState("active");
@@ -40,21 +41,27 @@ const Home = () => {
           <form onSubmit={handleSubmit} className="flex justify-center">
             {inputState === "active" ? (
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className=" shadow-[#2b1d25] shadow-2xl bg-gradient-to-tl from-zinc-900 to-zinc-950 text-white placeholder:text-zinc-400 px-0 text-center py-3 rounded-3xl text-sm focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 focus:ring-offset-zinc-900 font-semibold"
-                autoFocus
-              />
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setInputValue(e.target.value);
+              }}
+              placeholder="Enter your email"
+              className="shadow-[#2b1d25] shadow-2xl bg-gradient-to-tl from-zinc-900 to-zinc-950 text-white placeholder:text-zinc-400 px-0 text-center py-3 rounded-3xl text-sm outline-none focus:ring-1 focus:ring-zinc-900 font-semibold w-full max-w-[400px] transition-all duration-200"
+              style={{
+                width: `${Math.min(Math.max(inputValue.length * 10, 160), 400)}px`,
+              }}
+              autoFocus
+            />
             ) : inputState === "initial" ? (
-              <Button
-                type="button"
-                onClick={handleButtonClick}
-                className="shadow-[#2d1e27] shadow-2xl outline-none ring-transparent bg-gradient-to-br from-zinc-950 to-zinc-900 text-zinc-400 px-8 py-3 rounded-3xl text-sm font-semibold focus:shadow-2xl"
-              >
-                Join the Waitlist
-              </Button>
+          <Button
+            type="button"
+            onClick={handleButtonClick}
+            className="shadow-[#2d1e27] shadow-2xl outline-none ring-0 bg-gradient-to-br from-zinc-950 to-zinc-900 text-zinc-400 px-8 py-3 rounded-3xl text-sm font-semibold focus:shadow-2xl focus:outline-none focus:ring-0"
+          >
+            Join the Waitlist
+          </Button>
             ) : (
               <div className="bg-zinc-950 text-zinc-400 px-8 py-3 rounded-3xl text-sm font-semibold">
                 Thanks! We&apos;ll keep you posted.
