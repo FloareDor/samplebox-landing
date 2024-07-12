@@ -34,9 +34,14 @@ const Home = () => {
   };
 
   return (
-    <div className="dark bg-black text-white min-h-screen flex flex-col items-center justify-center relative">
+    <div className="dark bg-black text-white min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+
+      <div className="absolute top-0 -left-4 w-72 h-72 bg-[#90637e] rounded-full mix-blend-screen filter blur-3xl opacity-40 animate-blob z-0"></div>
+      <div className="absolute top-0 -right-4 w-72 h-72 bg-zinc-800 rounded-full mix-blend-screen filter blur-xl opacity-100 animate-blob animation-delay-2000 z-0"></div>
+      <div className="absolute -bottom-8 left-20 w-72 h-72 bg-[#5e3e51] rounded-full mix-blend-screen filter blur-xl opacity-40 animate-blob animation-delay-4000 z-0"></div>
+      
       <div className="absolute inset-0 bg-[url('/bg.png')] bg-cover bg-center opacity-80" />
-      <div className="container max-w-3xl px-8 py-2 md:py-2 space-y-8 text-center relative z-10">
+      <div className="container max-w-3xl px-8 py-2 md:py-2 space-y-8 text-center relative z-20">
         <div className="space-y-4">
           <form onSubmit={handleSubmit} className="flex justify-center">
             {inputState === "active" ? (
