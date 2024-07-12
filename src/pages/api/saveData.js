@@ -1,5 +1,5 @@
 import { saveEmail } from '../../lib/db';
-import geoip from 'geoip-lite';
+// import geoip from 'geoip-lite';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -15,15 +15,15 @@ export default async function handler(req, res) {
       const ip = forwardedFor ? forwardedFor.split(',')[0] : req.socket.remoteAddress;
 
       // Using geoip-lite to get location info
-	  const geo = geoip.lookup(ip);
-      const location = geo ? {
-        country: geo.country,
-        continent: geo.continent,
-        region: geo.region,
-        city: geo.city,
-        timezone: geo.timezone
-		  } : null;
-	// const location = null;
+	//   const geo = geoip.lookup(ip);
+    //   const location = geo ? {
+    //     country: geo.country,
+    //     continent: geo.continent,
+    //     region: geo.region,
+    //     city: geo.city,
+    //     timezone: geo.timezone
+	// 	  } : null;
+		const location = null;
 	  
 
       await saveEmail(email, location);
