@@ -65,7 +65,7 @@ const Home = () => {
             onClick={handleButtonClick}
             className="shadow-[#2d1e27] shadow-2xl outline-none ring-0 bg-gradient-to-br from-zinc-950 to-zinc-900 text-zinc-400 px-8 py-3 rounded-3xl text-sm font-semibold focus:shadow-2xl focus:outline-none focus:ring-0"
           >
-            Join the Waitlist
+            Get Early Access
           </Button>
             ) : (
               <div className="bg-zinc-950 text-zinc-400 px-8 py-3 rounded-3xl text-sm font-semibold">
