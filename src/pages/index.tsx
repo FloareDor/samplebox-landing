@@ -34,7 +34,7 @@ const Home = () => {
   };
 
   const handleDownload = async () => {
-    window.location.href = "http://64.23.230.138:8000/download";
+    window.location.href = "https://samplebox.live:8000/download";
   };
 
   return (
