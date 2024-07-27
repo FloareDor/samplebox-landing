@@ -73,7 +73,7 @@ const Home = () => {
             ) : (
               <div className="flex flex-col items-center space-y-0">
                 <div className="bg-transparent text-zinc-400 text-xs rounded-3xl font-semibold">
-                  Thanks! I'll keep you posted!
+                  Thanks! I&apos;ll keep you posted!
                 </div>
                 <Button
                   onClick={handleDownload}
