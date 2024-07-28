@@ -92,8 +92,11 @@ const Home = () => {
             </p>
             <p className="text-lg md:text-xl text-zinc-400 font-body">
               includes stems, drums, loops and wonky ideas made from
-              that song.
+              that song
             </p>
+            <span className="text-sm text-zinc-400 font-body">
+              wonky ~ chopped, rearranged, reversed, pitched up/down, time-stretched in a musically sensible way.
+            </span>
           </div>
         </div>
 
