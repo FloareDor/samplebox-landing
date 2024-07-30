@@ -1,5 +1,6 @@
 import { saveEmail } from '../../lib/db';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
+import { checkEmailExists } from '../../lib/db';
 
 // Set up the rate limiter
 const rateLimiter = new RateLimiterMemory({
@@ -28,8 +29,10 @@ export default async function handler(req, res) {
       }
 
       const location = null;
-
-      await saveEmail(email, location);
+      const emailExists = await checkEmailExists(email);
+      if (!emailExists) {
+        await saveEmail(email, location);
+      }
       res.status(201).json({ message: 'Email saved successfully!' });
     } catch (error) {
       console.error('Error saving email:', error);

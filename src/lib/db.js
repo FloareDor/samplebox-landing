@@ -35,6 +35,14 @@ export async function saveEmail(email, location) {
 	  email, 
 	  location,
 	  timestamp: new Date() 
-	});
+  });
 	return result;
-  }
+}
+  
+export async function checkEmailExists(email) {
+  const client = await clientPromise;
+  const db = client.db('samplebox');
+  const collection = db.collection('waitlist');
+  const existingUser = await collection.findOne({ email });
+  return !!existingUser;
+}
